@@ -1,7 +1,7 @@
 const LandingPage = () => {
   return (
-    <div className="h-screen w-screen bg-pink-50 grid grid-cols-2 items-center">
-      <div className="">
+    <div className="h-screen w-full bg-pink-50 grid grid-cols-2 items-center">
+      <div>
         <h1>Jem com chcem</h1>
       </div>
       <div>
