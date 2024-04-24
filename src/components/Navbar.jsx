@@ -9,7 +9,7 @@ const Navbar = () => {
           <Button>Home</Button>
         </li>
         <li>
-          <Button>Calculator</Button>
+          <Button>Calorie calculator</Button>
         </li>
       </ul>
     </div>
