@@ -1,0 +1,17 @@
+.animated-text-container{
+
+    margin-left: 10vw;
+}
+
+.animated-text{
+    color: white;
+    font-size: 5vw;
+    font-weight: 700;
+    text-shadow: 2px 2px #5c7e14;
+
+}
+
+.changing-word{
+    color:#5c7e14;
+    text-shadow: 2px 2px white;
+}
