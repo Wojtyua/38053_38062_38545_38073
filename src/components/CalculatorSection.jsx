@@ -1,41 +1,65 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
+import Autosuggest from "react-autosuggest";
 
 const supabase = createClient(
   "https://vvhqfdkzqvrsfhjluall.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2aHFmZGt6cXZyc2Zoamx1YWxsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU5NjYyOTYsImV4cCI6MjAzMTU0MjI5Nn0.Te07xau3TTETS3FFCuWivxkxFVI11dli9LV9zsRhSTo"
 );
 
-const dummy = [
-  {
-    name: "ryz",
-    calorie: 6,
-    protein: 10,
-    carbs: 15,
-    sugar: 5,
-    fat: 5,
-  },
-  {
-    name: "ryz2",
-    calorie: 6,
-    protein: 10,
-    carbs: 15,
-    sugar: 5,
-    fat: 5,
-  },
-];
-
 const CalculatorSection = () => {
   const [products, setProducts] = useState([]);
+  const [value, setValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     getProducts();
   }, []);
 
   async function getProducts() {
-    const { data } = await supabase.from("products").select("*");
+    const { data } = await supabase.from("Products").select("*");
     setProducts(data);
   }
+
+  const getSuggestions = (value) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+    return inputLength === 0 ? [] : products.filter(prod =>
+      prod.name.toLowerCase().includes(inputValue)
+    );
+  };
+
+  const getSuggestionValue = (suggestion) => suggestion.name;
+
+  const renderSuggestion = (suggestion) => (
+    <div>
+      {suggestion.name}
+    </div>
+  );
+
+  const onChange = (event, { newValue }) => {
+    setValue(newValue);
+  };
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const onSuggestionSelected = (event, { suggestion }) => {
+    setSelectedProduct(suggestion);
+  };
+
+  const inputProps = {
+    placeholder: "Enter product name...",
+    value,
+    onChange
+  };
+
   const [totals, setTotals] = useState({
     calorie: 0,
     protein: 0,
@@ -45,48 +69,54 @@ const CalculatorSection = () => {
   });
 
   useEffect(() => {
-    const calculateTotals = () => {
-      let calorie = 0;
-      let protein = 0;
-      let carbs = 0;
-      let sugar = 0;
-      let fat = 0;
-
-      dummy.forEach((item) => {
-        calorie += item.calorie;
-        protein += item.protein;
-        carbs += item.carbs;
-        sugar += item.sugar;
-        fat += item.fat;
+    if (selectedProduct) {
+      setTotals({
+        calorie: selectedProduct.calorie,
+        protein: selectedProduct.protein,
+        carbs: selectedProduct.carbs,
+        sugar: selectedProduct.sugar,
+        fat: selectedProduct.fat,
       });
-
-      setTotals({ calorie, protein, carbs, sugar, fat });
-    };
-
-    calculateTotals();
-  }, []);
+    }
+  }, [selectedProduct]);
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center">
-      <div className="mb-4 p-4 text-center">
-        <h1 className="text-xl font-bold mb-4">Totals:</h1>
-        <table className="text-center">
-          <tr>
-            <th>Calories</th>
-            <th>Protein</th>
-            <th>Carbs</th>
-            <th>Sugar</th>
-            <th>Fat</th>
-          </tr>
-          <tr>
-            <td>{totals.calorie} kcal</td>
-            <td>{totals.protein}g</td>
-            <td>{totals.carbs}g</td>
-            <td>{totals.sugar}g</td>
-            <td>{totals.fat}g</td>
-          </tr>
-        </table>
-      </div>
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+        onSuggestionSelected={onSuggestionSelected}
+      />
+
+      {selectedProduct && (
+        <div className="mt-4 p-4 text-center">
+          <h1 className="text-xl font-bold mb-4">Product Details:</h1>
+          <table className="text-center">
+            <thead>
+              <tr>
+                <th>Calories</th>
+                <th>Protein</th>
+                <th>Carbs</th>
+                <th>Sugar</th>
+                <th>Fat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{selectedProduct.calorie} kcal</td>
+                <td>{selectedProduct.protein}g</td>
+                <td>{selectedProduct.carbs}g</td>
+                <td>{selectedProduct.sugar}g</td>
+                <td>{selectedProduct.fat}g</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
