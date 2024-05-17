@@ -1,4 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://<project>.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2aHFmZGt6cXZyc2Zoamx1YWxsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU5NjYyOTYsImV4cCI6MjAzMTU0MjI5Nn0.Te07xau3TTETS3FFCuWivxkxFVI11dli9LV9zsRhSTo");
+
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  async function getProducts() {
+    const { data } = await supabase.from("products").select();
+    setProducts(data);
+  }
+
+
 
 const dummy = [{
   name: "ryz",
@@ -48,6 +65,7 @@ const CalculatorSection = () => {
   }, []);
 
   return (
+
     <div className="h-screen w-full flex flex-col items-center justify-center">
       <div className="mb-4 p-4 text-center">
 
