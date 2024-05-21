@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import Autosuggest from "react-autosuggest";
-import "../../src/theme.css";
 
 const supabase = createClient(
   "https://vvhqfdkzqvrsfhjluall.supabase.co",
