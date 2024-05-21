@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import Autosuggest from "react-autosuggest";
 
@@ -11,7 +11,7 @@ const CalculatorSection = () => {
   const [products, setProducts] = useState([]);
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     getProducts();
@@ -47,7 +47,7 @@ const CalculatorSection = () => {
   };
 
   const onSuggestionSelected = (event, { suggestion }) => {
-    setSelectedProduct(suggestion);
+    setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, suggestion]);
   };
 
   const inputProps = {
@@ -56,25 +56,26 @@ const CalculatorSection = () => {
     onChange,
   };
 
-  const [totals, setTotals] = useState({
-    calorie: 0,
-    protein: 0,
-    carbs: 0,
-    sugar: 0,
-    fat: 0,
-  });
+  const calculateTotals = (products) => {
+    return products.reduce(
+      (totals, product) => ({
+        calorie: totals.calorie + product.calorie,
+        protein: totals.protein + product.protein,
+        carbs: totals.carbs + product.carbs,
+        sugar: totals.sugar + product.sugar,
+        fat: totals.fat + product.fat,
+      }),
+      {
+        calorie: 0,
+        protein: 0,
+        carbs: 0,
+        sugar: 0,
+        fat: 0,
+      }
+    );
+  };
 
-  useEffect(() => {
-    if (selectedProduct) {
-      setTotals({
-        calorie: selectedProduct.calorie,
-        protein: selectedProduct.protein,
-        carbs: selectedProduct.carbs,
-        sugar: selectedProduct.sugar,
-        fat: selectedProduct.fat,
-      });
-    }
-  }, [selectedProduct]);
+  const totals = calculateTotals(selectedProducts);
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center">
@@ -88,12 +89,13 @@ const CalculatorSection = () => {
         onSuggestionSelected={onSuggestionSelected}
       />
 
-      {selectedProduct && (
+      {selectedProducts.length > 0 && (
         <div className="mt-4 p-4 text-center">
-          <h1 className="text-xl font-bold mb-4">Product Details:</h1>
+          <h1 className="text-xl font-bold mb-4">Selected Products:</h1>
           <table className="text-center">
             <thead>
               <tr>
+                <th>Product</th>
                 <th>Calories</th>
                 <th>Protein</th>
                 <th>Carbs</th>
@@ -102,12 +104,23 @@ const CalculatorSection = () => {
               </tr>
             </thead>
             <tbody>
+              {selectedProducts.map((product, index) => (
+                <tr key={index}>
+                  <td>{product.name}</td>
+                  <td>{product.calorie} kcal</td>
+                  <td>{product.protein}g</td>
+                  <td>{product.carbs}g</td>
+                  <td>{product.sugar}g</td>
+                  <td>{product.fat}g</td>
+                </tr>
+              ))}
               <tr>
-                <td>{selectedProduct.calorie} kcal</td>
-                <td>{selectedProduct.protein}g</td>
-                <td>{selectedProduct.carbs}g</td>
-                <td>{selectedProduct.sugar}g</td>
-                <td>{selectedProduct.fat}g</td>
+                <td><strong>Totals</strong></td>
+                <td>{totals.calorie.toFixed(2)} kcal</td>
+                <td>{totals.protein.toFixed(2)}g</td>
+                <td>{totals.carbs.toFixed(2)}g</td>
+                <td>{totals.sugar.toFixed(2)}g</td>
+                <td>{totals.fat.toFixed(2)}g</td>
               </tr>
             </tbody>
           </table>
