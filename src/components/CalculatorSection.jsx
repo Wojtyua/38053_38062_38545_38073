@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import Autosuggest from "react-autosuggest";
+import "../../src/theme.css";
 
 const supabase = createClient(
   "https://vvhqfdkzqvrsfhjluall.supabase.co",
@@ -9,7 +10,7 @@ const supabase = createClient(
 
 const CalculatorSection = () => {
   const [products, setProducts] = useState([]);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -25,18 +26,14 @@ const CalculatorSection = () => {
   const getSuggestions = (value) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
-    return inputLength === 0 ? [] : products.filter(prod =>
-      prod.name.toLowerCase().includes(inputValue)
-    );
+    return inputLength === 0
+      ? []
+      : products.filter((prod) => prod.name.toLowerCase().includes(inputValue));
   };
 
   const getSuggestionValue = (suggestion) => suggestion.name;
 
-  const renderSuggestion = (suggestion) => (
-    <div>
-      {suggestion.name}
-    </div>
-  );
+  const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
 
   const onChange = (event, { newValue }) => {
     setValue(newValue);
@@ -57,7 +54,7 @@ const CalculatorSection = () => {
   const inputProps = {
     placeholder: "Enter product name...",
     value,
-    onChange
+    onChange,
   };
 
   const [totals, setTotals] = useState({
