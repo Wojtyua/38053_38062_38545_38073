@@ -77,7 +77,7 @@ const CalculatorSection = () => {
   }, [selectedProduct]);
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center">
+    <div className="h-screen w-full flex flex-col items-center justify-center" id="calculator-section">
       <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
