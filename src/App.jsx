@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div>
+    <div className="px-24 text-text bg-background">
       <Navbar />
       <LandingPage />
       <CalculatorSection />

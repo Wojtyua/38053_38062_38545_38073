@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import Typed from 'typed.js';
+import { useEffect, useRef } from "react";
+import Typed from "typed.js";
 
 const ChangingText = ({ words }) => {
   const wordIndexRef = useRef(0);
@@ -19,7 +19,7 @@ const ChangingText = ({ words }) => {
           wordIndexRef.current++;
         }
         self.start();
-      }
+      },
     };
 
     const typed = new Typed(typedRef.current, options);
@@ -29,7 +29,7 @@ const ChangingText = ({ words }) => {
     };
   }, [words]);
 
-  return <span ref={typedRef} className='changing-word'></span>;
+  return <span ref={typedRef} className="changing-word"></span>;
 };
 
 export default ChangingText;
