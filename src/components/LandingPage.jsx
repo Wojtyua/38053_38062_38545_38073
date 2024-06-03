@@ -1,40 +1,14 @@
-import React, { useEffect, useRef } from 'react';
-import Typed from 'typed.js';
+import React from 'react';
 import './landingPage.css';
+import ChangingText from './ChangingText';
 
 const LandingPage = () => {
   const changingWords = ['kalorie!', 'zdrowie!'];
-  const wordIndexRef = useRef(0);
-  const typedRef = useRef(null);
-
-  useEffect(() => {
-    const options = {
-      strings: changingWords,
-      typeSpeed: 90,
-      backSpeed: 50,
-      loop: true,
-      smartBackspace: true,
-      onComplete: (self) => {
-        if (wordIndexRef.current === changingWords.length - 1) {
-          wordIndexRef.current = 0;
-        } else {
-          wordIndexRef.current++;
-        }
-        self.start();
-      }
-    };
-
-    const typed = new Typed(typedRef.current, options);
-
-    return () => {
-      typed.destroy();
-    };
-  }, []);
 
   return (
     <div className="h-screen w-full bg-pink-50 grid grid-cols-2 items-center bg-image-1 top-0 left-0 bg-cover bg-center bg-no-repeat" id="landing-page">
       <div className='animated-text-container'>
-        <h1 className='animated-text'>Licz swoje <br/> {<span ref={typedRef} className='changing-word'></span>}</h1>
+        <h1 className='animated-text'>Licz swoje <br/> <ChangingText words={changingWords} /></h1>
       </div>
       <div>
         <h2>Policz swoje kalorie</h2>
