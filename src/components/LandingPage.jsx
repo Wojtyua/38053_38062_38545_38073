@@ -7,7 +7,7 @@ const LandingPage = () => {
 
   return (
     <div
-      className="grid grid-cols-2 h-full pt-32 px-12 space-x-6"
+      className="grid grid-cols-2 h-full pt-48 px-12 space-x-6"
       id="landing-page"
     >
       <div>
