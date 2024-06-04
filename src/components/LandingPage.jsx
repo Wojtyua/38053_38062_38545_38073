@@ -6,7 +6,10 @@ const LandingPage = () => {
   const changingWords = ["Kalorie!", "Zdrowie!"];
 
   return (
-    <div className="grid grid-cols-2 h-full pt-32 px-12 space-x-6">
+    <div
+      className="grid grid-cols-2 h-full pt-32 px-12 space-x-6"
+      id="landing-page"
+    >
       <div>
         <div className="space-y-24">
           <div className="space-y-10">

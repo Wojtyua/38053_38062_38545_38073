@@ -4,12 +4,10 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="px-24 text-text bg-background">
-      <div className=" mx-auto max-w-[1800px]">
-        <div className="h-screen">
-          <Navbar />
-          <LandingPage />
-        </div>
+    <div className=" text-text bg-background">
+      <Navbar />
+      <div className="px-24 mx-auto max-w-[1800px]">
+        <LandingPage />
         <CalculatorSection />
       </div>
     </div>
