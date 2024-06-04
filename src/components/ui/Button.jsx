@@ -1,6 +1,10 @@
-const Button = ({ children }) => {
+const Button = ({ children, type }) => {
   return (
-    <button className="bg-gray-900 text-gray-50 font-bold py-2 px-6 rounded-full border-4 border-emerald-600">
+    <button
+      className={`text-text px-6 py-3 font-normal tracking-wide rounded-md capitalize hover:-translate-y-1 transition-transform ${
+        type === "secondary" ? "bg-secondaryLight" : "bg-primary"
+      }`}
+    >
       {children}
     </button>
   );

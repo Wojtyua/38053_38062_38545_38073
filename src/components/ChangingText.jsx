@@ -29,7 +29,12 @@ const ChangingText = ({ words }) => {
     };
   }, [words]);
 
-  return <span ref={typedRef} className="changing-word"></span>;
+  return (
+    <span
+      ref={typedRef}
+      className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+    ></span>
+  );
 };
 
 export default ChangingText;
