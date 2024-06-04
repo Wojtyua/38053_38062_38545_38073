@@ -1,6 +1,7 @@
 import "./landingPage.css";
 import ChangingText from "./ChangingText";
 import Button from "./ui/Button";
+import { FaAnglesDown } from "react-icons/fa6";
 
 const LandingPage = () => {
   const changingWords = ["Kalorie!", "Zdrowie!"];
@@ -31,6 +32,10 @@ const LandingPage = () => {
       </div>
       <div className="items-center text-center">
         <img src="kalkulator2.jpg" alt="Kalkulator" />
+      </div>
+
+      <div className="absolute right-1/2 bottom-12 animate-bounce">
+        <FaAnglesDown fill="#7ca064" size={24} />
       </div>
     </div>
   );
