@@ -24,7 +24,7 @@ const Navbar = () => {
             duration={500}
             className="cursor-pointer hover:text-primary transition-colors"
           >
-            Calorie calculator
+            Calculator
           </Link>
         </li>
       </ul>
