@@ -1,7 +1,7 @@
 import "./landingPage.css";
 import ChangingText from "./ChangingText";
 import Button from "./ui/Button";
-import { FaAnglesDown } from "react-icons/fa6";
+
 import { Link } from "react-scroll";
 
 const LandingPage = () => {
@@ -9,11 +9,11 @@ const LandingPage = () => {
 
   return (
     <div
-      className="grid grid-cols-2 h-screen pt-48 px-12 space-x-12"
+      className="grid grid-cols-2 pt-48 px-12 space-x-12 mb-32"
       id="landing-page"
     >
       <div>
-        <div className="space-y-24">
+        <div className="space-y-24 h-full">
           <div className="space-y-10">
             <h1 className="text-6xl font-bold tracking-wider leading-tight text-balance">
               Skorzystaj z Naszego Kalkulatora i Zacznij Liczyć Swoje{" "}
@@ -41,10 +41,6 @@ const LandingPage = () => {
       </div>
       <div className="items-center text-center">
         <img src="kalkulator2.jpg" alt="Kalkulator" />
-      </div>
-
-      <div className="absolute right-1/2 bottom-12 animate-bounce">
-        <FaAnglesDown fill="#7ca064" size={24} />
       </div>
     </div>
   );
