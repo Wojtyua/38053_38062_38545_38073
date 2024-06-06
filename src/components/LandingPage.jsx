@@ -2,6 +2,7 @@ import "./landingPage.css";
 import ChangingText from "./ChangingText";
 import Button from "./ui/Button";
 import { FaAnglesDown } from "react-icons/fa6";
+import { Link } from "react-scroll";
 
 const LandingPage = () => {
   const changingWords = ["Kalorie!", "Zdrowie!"];
@@ -24,9 +25,17 @@ const LandingPage = () => {
             </p>
           </div>
           <div className="space-x-4">
-            <Button type="secondary">Dowiedz się więcej</Button>
+            <Button type="secondary">
+              <Link to="about" smooth={true} duration={500}>
+                Dowiedz się więcej{" "}
+              </Link>
+            </Button>
 
-            <Button type="primary">Zacznij liczyć</Button>
+            <Button type="primary">
+              <Link to="calculator-section" smooth={true} duration={500}>
+                Zacznij liczyć
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
