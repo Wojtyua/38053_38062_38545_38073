@@ -11,6 +11,7 @@ export default {
         secondary: "#adcdc0",
         accent: "#8db9b6",
         secondaryLight: "#dce2d4",
+        backgroundDarker: "#f0f4ee",
       },
     },
   },
