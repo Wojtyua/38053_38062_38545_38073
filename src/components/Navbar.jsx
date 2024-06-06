@@ -18,6 +18,17 @@ const Navbar = () => {
         </li>
         <li>
           <Link
+            to="about"
+            spy={true}
+            smooth={true}
+            duration={500}
+            className="cursor-pointer hover:text-primary transition-colors"
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link
             to="calculator-section"
             spy={true}
             smooth={true}

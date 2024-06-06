@@ -4,7 +4,7 @@ import { IoIosHappy } from "react-icons/io";
 
 const Featured = () => {
   return (
-    <section>
+    <section id="about">
       <h2 className="text-4xl capitalize font-bold mb-10">
         dowiedz się wiecej
       </h2>
