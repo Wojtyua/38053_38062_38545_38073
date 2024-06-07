@@ -2,6 +2,7 @@ import CalculatorSection from "./components/CalculatorSection";
 import Featured from "./components/Featured";
 import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Featured />
         <CalculatorSection />
       </div>
+      <Footer />
     </div>
   );
 }
