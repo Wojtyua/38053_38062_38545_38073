@@ -1,7 +1,7 @@
 
 const Footer = () => {
   return (
-  <div className="w-full px-20 bg-secondary flex justify-between items-center" id="footer">
+  <div className="w-full px-20 bg-secondary flex justify-between items-center py-1" id="footer">
     <span className="text-text">© 2024 Copyright: L1. 6</span>
     <ul className="flex space-x-5 cursor-pointer">
     <li>
