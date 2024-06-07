@@ -25,17 +25,16 @@ const LandingPage = () => {
             </p>
           </div>
           <div className="space-x-4">
+          <Link to="about" smooth={true} duration={500}>
             <Button type="secondary">
-              <Link to="about" smooth={true} duration={500}>
                 Dowiedz się więcej{" "}
-              </Link>
             </Button>
-
+          </Link>
+          <Link to="calculator-section" smooth={true} duration={500}>
             <Button type="primary">
-              <Link to="calculator-section" smooth={true} duration={500}>
                 Zacznij liczyć
-              </Link>
             </Button>
+          </Link>
           </div>
         </div>
       </div>
