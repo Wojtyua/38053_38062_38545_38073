@@ -19,8 +19,7 @@ const Featured = () => {
             </h3>
 
             <p className="leading-8">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perferendis iusto tenetur corrupti omnis voluptas
+              Znajdź i wybierz produkt, który chcesz dodać do swojego dziennego jadłospisu. 🍎
             </p>
           </div>
         </div>
@@ -34,8 +33,7 @@ const Featured = () => {
             </h3>
 
             <p className="leading-8">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perferendis iusto tenetur corrupti omnis voluptas
+              Wprowadź ilość wybranego produktu, aby dokładnie śledzić spożywane kalorie. ✏️
             </p>
           </div>
         </div>
@@ -49,8 +47,7 @@ const Featured = () => {
             </h3>
 
             <p className="leading-8">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perferendis iusto tenetur corrupti omnis voluptas
+              Aplikacja automatycznie obliczy kaloryczność posiłku, pomagając Ci kontrolować dietę. 🎯
             </p>
           </div>
         </div>
