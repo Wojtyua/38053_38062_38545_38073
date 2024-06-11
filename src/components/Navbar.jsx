@@ -33,7 +33,7 @@ const Navbar = () => {
             spy={true}
             smooth={true}
             duration={500}
-            className="cursor-pointer hover:text-primary transition-colors"
+            className="cursor-pointer transition-colors bg-primary p-2 rounded-md text-text font-medium"
           >
             Calculator
           </Link>
