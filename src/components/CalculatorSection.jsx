@@ -77,47 +77,51 @@ const CalculatorSection = () => {
   }, [selectedProduct]);
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center" id="calculator-section">
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-        onSuggestionSelected={onSuggestionSelected}
-        theme={{
-          input: "flex text-3xl text-white font-bold  bg-gray-800 pl-7 pr-3 gap-2 py-2 rounded-full border-4 border-secondary",
-          suggestionsContainer: " bg-gray-50 text-black-50 font-bold p-1"
-        }}
-      />
+    <section className="py-20" id="calculator-section">
+      <h2 className="text-4xl capitalize font-bold mb-10">Zacznij liczyć</h2>
+      <div className="flex flex-col items-center h-screen">
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          onSuggestionSelected={onSuggestionSelected}
+          theme={{
+            input:
+              "flex text-3xl text-white font-bold  bg-gray-800 pl-7 pr-3 gap-2 py-2 rounded-full border-4 border-secondary",
+            suggestionsContainer: " bg-gray-50 text-black-50 font-bold p-1",
+          }}
+        />
 
-      {selectedProduct && (
-        <div className="mt-4 p-4 text-center">
-          <h1 className="text-xl font-bold mb-4">Product Details:</h1>
-          <table className="text-center">
-            <thead>
-              <tr>
-                <th>Calories</th>
-                <th>Protein</th>
-                <th>Carbs</th>
-                <th>Sugar</th>
-                <th>Fat</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{selectedProduct.calorie} kcal</td>
-                <td>{selectedProduct.protein}g</td>
-                <td>{selectedProduct.carbs}g</td>
-                <td>{selectedProduct.sugar}g</td>
-                <td>{selectedProduct.fat}g</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
+        {selectedProduct && (
+          <div className="mt-4 p-4 text-center">
+            <h1 className="text-xl font-bold mb-4">Product Details:</h1>
+            <table className="text-center">
+              <thead>
+                <tr>
+                  <th>Calories</th>
+                  <th>Protein</th>
+                  <th>Carbs</th>
+                  <th>Sugar</th>
+                  <th>Fat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{selectedProduct.calorie} kcal</td>
+                  <td>{selectedProduct.protein}g</td>
+                  <td>{selectedProduct.carbs}g</td>
+                  <td>{selectedProduct.sugar}g</td>
+                  <td>{selectedProduct.fat}g</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 

@@ -4,7 +4,7 @@ import { IoIosHappy } from "react-icons/io";
 
 const Featured = () => {
   return (
-    <section id="about">
+    <section id="about" className="py-20">
       <h2 className="text-4xl capitalize font-bold mb-10">
         dowiedz się wiecej
       </h2>
@@ -19,7 +19,8 @@ const Featured = () => {
             </h3>
 
             <p className="leading-8">
-              Znajdź i wybierz produkt, który chcesz dodać do swojego dziennego jadłospisu. 🍎
+              Znajdź i wybierz produkt, który chcesz dodać do swojego dziennego
+              jadłospisu. 🍎
             </p>
           </div>
         </div>
@@ -33,7 +34,8 @@ const Featured = () => {
             </h3>
 
             <p className="leading-8">
-              Wprowadź ilość wybranego produktu, aby dokładnie śledzić spożywane kalorie. ✏️
+              Wprowadź ilość wybranego produktu, aby dokładnie śledzić spożywane
+              kalorie. ✏️
             </p>
           </div>
         </div>
@@ -47,7 +49,8 @@ const Featured = () => {
             </h3>
 
             <p className="leading-8">
-              Aplikacja automatycznie obliczy kaloryczność posiłku, pomagając Ci kontrolować dietę. 🎯
+              Aplikacja automatycznie obliczy kaloryczność posiłku, pomagając Ci
+              kontrolować dietę. 🎯
             </p>
           </div>
         </div>
