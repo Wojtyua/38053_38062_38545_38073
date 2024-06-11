@@ -1,124 +1,39 @@
-import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
-import Autosuggest from "react-autosuggest";
-
-const supabase = createClient(
-  "https://vvhqfdkzqvrsfhjluall.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2aHFmZGt6cXZyc2Zoamx1YWxsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU5NjYyOTYsImV4cCI6MjAzMTU0MjI5Nn0.Te07xau3TTETS3FFCuWivxkxFVI11dli9LV9zsRhSTo"
-);
+import React, { useState } from "react";
+import useProducts from "../hooks/useProducts";
+import useSelectedProducts from "../hooks/useSelectedProducts";
+import ProductSuggestions from "../hooks/ProductSuggestions";
+import ProductDetails from "../hooks/ProductDetails";
+import SelectedProductsTable from "../hooks/SelectedProductsTable";
 
 const CalculatorSection = () => {
-  const [products, setProducts] = useState([]);
-  const [value, setValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const products = useProducts();
+  const { selectedProducts, totals, addProductToList } = useSelectedProducts();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  async function getProducts() {
-    const { data } = await supabase.from("Products").select("*");
-    setProducts(data);
-  }
-
-  const getSuggestions = (value) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-    return inputLength === 0
-      ? []
-      : products.filter((prod) => prod.name.toLowerCase().includes(inputValue));
+  const handleProductSelected = (product) => {
+    setSelectedProduct(product);
   };
 
-  const getSuggestionValue = (suggestion) => suggestion.name;
-
-  const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
-
-  const onChange = (event, { newValue }) => {
-    setValue(newValue);
-  };
-
-  const onSuggestionsFetchRequested = ({ value }) => {
-    setSuggestions(getSuggestions(value));
-  };
-
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
-  };
-
-  const onSuggestionSelected = (event, { suggestion }) => {
-    setSelectedProduct(suggestion);
-  };
-
-  const inputProps = {
-    placeholder: "Enter product name...",
-    value,
-    onChange,
-  };
-
-  const [totals, setTotals] = useState({
-    calorie: 0,
-    protein: 0,
-    carbs: 0,
-    sugar: 0,
-    fat: 0,
-  });
-
-  useEffect(() => {
+  const handleAddProduct = () => {
     if (selectedProduct) {
-      setTotals({
-        calorie: selectedProduct.calorie,
-        protein: selectedProduct.protein,
-        carbs: selectedProduct.carbs,
-        sugar: selectedProduct.sugar,
-        fat: selectedProduct.fat,
-      });
+      addProductToList(selectedProduct);
+      setSelectedProduct(null);
     }
-  }, [selectedProduct]);
+  };
 
   return (
     <section className="py-20" id="calculator-section">
       <h2 className="text-4xl capitalize font-bold mb-10">Zacznij liczyć</h2>
       <div className="flex flex-col items-center h-screen">
-        <Autosuggest
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={onSuggestionsClearRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
-          onSuggestionSelected={onSuggestionSelected}
-          theme={{
-            input:
-              "flex text-lg font-medium bg-backgroundDarker rounded-full border border-secondary px-8 py-3",
-            suggestionsContainer: " bg-gray-50 text-black-50 font-bold p-1",
-          }}
-        />
+       
+        <ProductSuggestions products={products} onProductSelected={handleProductSelected} />
+        {selectedProducts.length > 0 && (
+          <SelectedProductsTable selectedProducts={selectedProducts} totals={totals} />
+        )}
+
 
         {selectedProduct && (
-          <div className="mt-4 p-4 text-center">
-            <h1 className="text-xl font-bold mb-4">Product Details:</h1>
-            <table className="text-center">
-              <thead>
-                <tr>
-                  <th>Calories</th>
-                  <th>Protein</th>
-                  <th>Carbs</th>
-                  <th>Sugar</th>
-                  <th>Fat</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{selectedProduct.calorie} kcal</td>
-                  <td>{selectedProduct.protein}g</td>
-                  <td>{selectedProduct.carbs}g</td>
-                  <td>{selectedProduct.sugar}g</td>
-                  <td>{selectedProduct.fat}g</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <ProductDetails product={selectedProduct} onAddProduct={handleAddProduct} />
         )}
       </div>
     </section>
