@@ -90,7 +90,7 @@ const CalculatorSection = () => {
           onSuggestionSelected={onSuggestionSelected}
           theme={{
             input:
-              "flex text-3xl text-white font-bold  bg-gray-800 pl-7 pr-3 gap-2 py-2 rounded-full border-4 border-secondary",
+              "flex text-lg font-medium bg-backgroundDarker rounded-full border border-secondary px-8 py-3",
             suggestionsContainer: " bg-gray-50 text-black-50 font-bold p-1",
           }}
         />

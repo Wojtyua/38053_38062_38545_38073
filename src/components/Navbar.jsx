@@ -2,7 +2,7 @@ import { Link } from "react-scroll";
 
 const Navbar = () => {
   return (
-    <div className="fixed flex w-full px-24 bg-background justify-between items-center border-b border-secondaryLight py-4">
+    <div className="fixed flex w-full px-24 bg-background justify-between items-center border-b border-secondaryLight py-4 shadow-sm">
       <span className="text-text text-2xl font-bold">Calorie Calculator</span>
       <ul className="flex space-x-12 text-text font-semibold text-lg">
         <li>
