@@ -6,7 +6,7 @@ const ProductDetails = ({ product, onAddProduct }) => {
       <h1 className="text-xl capitalize font-bold mb-4">Szczegóły: "{product.name}"</h1>
       <table className="text-center">
         <thead>
-          <tr >
+          <tr>
             <th>Kalorie</th>
             <th>Białko</th>
             <th>Węglowodany</th>
@@ -16,11 +16,11 @@ const ProductDetails = ({ product, onAddProduct }) => {
         </thead>
         <tbody>
           <tr className="capitalize">
-            <td>{product.calories} kcal</td>
-            <td>{product.protein}g</td>
-            <td>{product.carbs}g</td>
-            <td>{product.sugar}g</td>
-            <td>{product.fat}g</td>
+            <td>{Math.round(product.calories)} kcal</td>
+            <td>{Math.round(product.protein)}g</td>
+            <td>{Math.round(product.carbs)}g</td>
+            <td>{Math.round(product.sugar)}g</td>
+            <td>{Math.round(product.fat)}g</td>
           </tr>
         </tbody>
       </table>
