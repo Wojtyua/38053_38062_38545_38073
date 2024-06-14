@@ -23,20 +23,19 @@ const CalculatorSection = () => {
 
   return (
     <section className="py-20" id="calculator-section">
-      <h2 className="text-4xl capitalize font-bold mb-10">Zacznij liczyć</h2>
-      <div className="flex flex-col items-center h-screen">
-       
-        <ProductSuggestions products={products} onProductSelected={handleProductSelected} />
-        {selectedProducts.length > 0 && (
-          <SelectedProductsTable selectedProducts={selectedProducts} totals={totals} />
-        )}
+    <h2 className="text-4xl capitalize font-bold mb-10">Zacznij liczyć</h2>
+    <div className="flex flex-col items-center h-screen space-y-8">
+      <ProductSuggestions products={products} onProductSelected={handleProductSelected} />
 
+      {selectedProduct && (
+        <ProductDetails product={selectedProduct} onAddProduct={handleAddProduct} />
+      )}
 
-        {selectedProduct && (
-          <ProductDetails product={selectedProduct} onAddProduct={handleAddProduct} />
-        )}
-      </div>
-    </section>
+      {selectedProducts.length > 0 && (
+        <SelectedProductsTable selectedProducts={selectedProducts} totals={totals} />
+      )}
+    </div>
+  </section>
   );
 };
 
