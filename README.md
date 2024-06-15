@@ -36,7 +36,7 @@ Aby uruchomić stronę *Calorie Calculator* lokalnie, wykonaj następujące krok
 
 ## Użytkowanie
 1. **Rejestrowanie posiłków:** Dodawaj posiłki, wyszukując je z bazy
-'''sh
+```sh
 const useProducts = () => {
   const [products, setProducts] = useState([]);
 
@@ -51,9 +51,9 @@ const useProducts = () => {
 
   return products;
 }
-'''
+```
 3. **Przeglądanie kaloryki posiłków:** Sprawdź ile kalorii mają twoje posiłki.
-'''sh
+```sh
 const useSelectedProducts = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [totals, setTotals] = useState({
@@ -81,9 +81,9 @@ const useSelectedProducts = () => {
     addProductToList,
   };
 };
-'''
+```
 4. **Przeglądanie informacji odżywczych:** Sprawdź podział odżywczy swoich posiłków.
-'''sh
+```sh
 {selectedProducts.map((product, index) => (
             <tr className="capitalize bg-white even:bg-gray-50" key={index}>
               <td className="py-2 px-4 border-b border-gray-200">{product.name}</td>
@@ -93,7 +93,7 @@ const useSelectedProducts = () => {
               <td className="py-2 px-4 border-b border-gray-200">{Math.round(product.sugar)}g</td>
               <td className="py-2 px-4 border-b border-gray-200">{Math.round(product.fat)}g</td>
             </tr>
-            '''
+```
 
 
 ## Licencja
