@@ -36,8 +36,11 @@ Aby uruchomić stronę *Calorie Calculator* lokalnie, wykonaj następujące krok
 
 ## Użytkowanie
 1. **Rejestrowanie posiłków:** Dodawaj posiłki, wyszukując je z bazy.
+![alt text](https://imgur.com/a/kzriHxl)
 2. **Przeglądanie kaloryki posiłków:** Sprawdź ile kalorii mają twoje posiłki.
+![alt text](https://imgur.com/a/fmvJPUS)
 3. **Przeglądanie informacji odżywczych:** Sprawdź podział odżywczy swoich posiłków.
+![alt text](https://imgur.com/a/mQsdTco)
 
 
 ## Licencja
