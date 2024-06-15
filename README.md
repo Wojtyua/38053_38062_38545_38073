@@ -35,12 +35,65 @@ Aby uruchomić stronę *Calorie Calculator* lokalnie, wykonaj następujące krok
 
 
 ## Użytkowanie
-1. **Rejestrowanie posiłków:** Dodawaj posiłki, wyszukując je z bazy.
-![alt text](https://imgur.com/a/kzriHxl)
-2. **Przeglądanie kaloryki posiłków:** Sprawdź ile kalorii mają twoje posiłki.
-![alt text](https://imgur.com/a/fmvJPUS)
-3. **Przeglądanie informacji odżywczych:** Sprawdź podział odżywczy swoich posiłków.
-![alt text](https://imgur.com/a/mQsdTco)
+1. **Rejestrowanie posiłków:** Dodawaj posiłki, wyszukując je z bazy
+'''sh
+const useProducts = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const { data } = await supabase.from("products").select("*");
+      setProducts(data);
+    };
+
+    getProducts();
+  }, []);
+
+  return products;
+}
+'''
+3. **Przeglądanie kaloryki posiłków:** Sprawdź ile kalorii mają twoje posiłki.
+'''sh
+const useSelectedProducts = () => {
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [totals, setTotals] = useState({
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    sugar: 0,
+    fat: 0,
+  });
+
+  const addProductToList = (product) => {
+    setSelectedProducts((prevProducts) => [...prevProducts, product]);
+    setTotals((prevTotals) => ({
+      calories: prevTotals.calories + product.calories,
+      protein: prevTotals.protein + product.protein,
+      carbs: prevTotals.carbs + product.carbs,
+      sugar: prevTotals.sugar + product.sugar,
+      fat: prevTotals.fat + product.fat,
+    }));
+  };
+
+  return {
+    selectedProducts,
+    totals,
+    addProductToList,
+  };
+};
+'''
+4. **Przeglądanie informacji odżywczych:** Sprawdź podział odżywczy swoich posiłków.
+'''sh
+{selectedProducts.map((product, index) => (
+            <tr className="capitalize bg-white even:bg-gray-50" key={index}>
+              <td className="py-2 px-4 border-b border-gray-200">{product.name}</td>
+              <td className="py-2 px-4 border-b border-gray-200">{Math.round(product.calories)} kcal</td>
+              <td className="py-2 px-4 border-b border-gray-200">{Math.round(product.protein)}g</td>
+              <td className="py-2 px-4 border-b border-gray-200">{Math.round(product.carbs)}g</td>
+              <td className="py-2 px-4 border-b border-gray-200">{Math.round(product.sugar)}g</td>
+              <td className="py-2 px-4 border-b border-gray-200">{Math.round(product.fat)}g</td>
+            </tr>
+            '''
 
 
 ## Licencja
